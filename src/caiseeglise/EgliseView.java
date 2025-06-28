@@ -2,7 +2,7 @@ package caiseeglise;
 
 //importation des classe
 
-import caiseeglise.Models.Database;
+
 import caiseeglise.Controlleurs.EgliseController;
 import caiseeglise.Models.Eglise;
 import caiseeglise.Models.Methodes;
@@ -22,6 +22,11 @@ public class EgliseView extends javax.swing.JFrame {
      */
     public EgliseView() {
         initComponents();
+        
+        //appel de la fonction affiche
+        btnafficheActionPerformed(null);
+        
+        
     }
 
     /**
@@ -152,6 +157,10 @@ public class EgliseView extends javax.swing.JFrame {
         String message = controller.ajouterEglise(design); // juste le nom, le solde est forcé à 0
 
         Methodes.show(message);
+        
+        //appel de la fonction affichage
+         btnafficheActionPerformed(null);
+
     } catch (Exception e) {
         e.printStackTrace();
         Methodes.show("Erreur : " + e.getMessage());
@@ -181,27 +190,27 @@ public class EgliseView extends javax.swing.JFrame {
 
     private void btnafficheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnafficheActionPerformed
         try {
-        Connection conn = Methodes.getconnexion();
-        if (conn == null) return;
+            Connection conn = Methodes.getconnexion();
+            if (conn == null) return;
 
-        Eglise eglise = new Eglise(conn);
-        List<Map<String, Object>> data = eglise.afficheEglises();
+            Eglise eglise = new Eglise(conn);
+            List<Map<String, Object>> data = eglise.afficheEglises();
 
-        // Traduction des colonnes
-        Map<String, String> titres = Map.of(
-            "ideglise", "ID",
-            "Design", "Nom de l'Église",
-            "Solde", "Solde Initial"
-        );
+            // Traduction des colonnes
+            Map<String, String> titres = Map.of(
+                "ideglise", "ID",
+                "Design", "Nom de l'Église",
+                "Solde", "Solde Initial"
+            );
 
-        // Afficher
-        DefaultTableModel model = Methodes.createTableModel(data, titres);
-        tableEglises.setModel(model);
+            // Afficher
+            DefaultTableModel model = Methodes.createTableModel(data, titres);
+            tableEglises.setModel(model);
 
-    } catch (Exception e) {
-        e.printStackTrace();
-        Methodes.show("Erreur lors de l'affichage : " + e.getMessage());
-    }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Methodes.show("Erreur lors de l'affichage : " + e.getMessage());
+        }
     }//GEN-LAST:event_btnafficheActionPerformed
 
     /**
@@ -231,7 +240,7 @@ public class EgliseView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Label Design;
-    public static javax.swing.JButton btnaffiche;
+    private javax.swing.JButton btnaffiche;
     private javax.swing.JButton btnajouter;
     private javax.swing.JTextField id_supprimer;
     private javax.swing.JButton jButton1;
