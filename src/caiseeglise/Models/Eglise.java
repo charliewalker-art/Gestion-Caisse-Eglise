@@ -69,6 +69,23 @@ public class Eglise extends Table {
 
     return results;
 }
+public String insertionEglise(String design) {
+    try {
+        String ideglise = Eglise_ID_unique(); // génère l'ID unique
+        int soldeInitial = 0;
+
+        Map<String, Object> data = Map.of(
+            "ideglise", ideglise,
+            "Design", design,
+            "Solde", soldeInitial
+        );
+
+        return insert(data); // appelle la méthode insert héritée de Table
+    } catch (Exception e) {
+        e.printStackTrace();
+        return "Erreur lors de l'insertion : " + e.getMessage();
+    }
+}
 
 
     

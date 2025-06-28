@@ -16,19 +16,10 @@ public class EgliseController extends Controlleur<Eglise> {
     }
 
     // Retourne un message (au lieu d'imprimer dans la console)
-    public String ajouterEglise(String ideglise, String design, int solde) {
-        Map<String, Object> data = Map.of(
-            "ideglise", ideglise,
-            "Design", design,
-            "Solde", solde
-        );
-        try {
-            return table.insert(data);  // retourne le message
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "Erreur lors de l'ajout : " + e.getMessage();
-        }
-    }
+    public String ajouterEglise(String design) {
+    return table.insertionEglise(design);
+}
+
 
     // Idem si tu veux aussi modifier et supprimer avec retour
     public String modifierEglise(String ideglise, Map<String, Object> data) {

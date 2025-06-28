@@ -156,23 +156,18 @@ public class EgliseView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnajouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnajouterActionPerformed
-     try {
+      try {
         String design = txtdesign.getText();
-        int solde = Integer.parseInt(txtsolde.getText());
-
         Connection conn = Methodes.getconnexion();
         if (conn == null) return;
 
         EgliseController controller = new EgliseController(conn);
-        String id = controller.getTable().Eglise_ID_unique();
-        String message = controller.ajouterEglise(id, design, solde);
+        String message = controller.ajouterEglise(design); // juste le nom, le solde est forcé à 0
 
         Methodes.show(message);
-    } catch (NumberFormatException e) {
-        Methodes.show("Le solde doit être un nombre entier.");
     } catch (Exception e) {
         e.printStackTrace();
-        Methodes.show("Erreur inattendue : " + e.getMessage());
+        Methodes.show("Erreur : " + e.getMessage());
     }
         
     }//GEN-LAST:event_btnajouterActionPerformed
