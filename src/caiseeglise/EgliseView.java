@@ -1,13 +1,12 @@
 package caiseeglise;
 
-//importation des classe
-
-
+//importation des classe 
 import caiseeglise.Controlleurs.EgliseController;
 import caiseeglise.Models.Eglise;
 import caiseeglise.Models.Methodes;
-
+//importation des object
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import javax.swing.table.DefaultTableModel;
@@ -24,7 +23,7 @@ public class EgliseView extends javax.swing.JFrame {
         initComponents();
         
         //appel de la fonction affiche
-        btnafficheActionPerformed(null);
+        AfficheEglise();
         
         
     }
@@ -41,12 +40,8 @@ public class EgliseView extends javax.swing.JFrame {
         btnajouter = new javax.swing.JButton();
         Design = new java.awt.Label();
         txtdesign = new java.awt.TextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        id_supprimer = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableEglises = new javax.swing.JTable();
-        btnaffiche = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,15 +54,6 @@ public class EgliseView extends javax.swing.JFrame {
 
         Design.setName("desig"); // NOI18N
         Design.setText("Design");
-
-        jButton1.setText("Supprimer");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("ID ");
 
         tableEglises.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -82,41 +68,20 @@ public class EgliseView extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableEglises);
 
-        btnaffiche.setText("Affiche");
-        btnaffiche.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnafficheActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Design, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(txtdesign, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(btnajouter))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(id_supprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(98, 98, 98))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnaffiche)
-                        .addGap(439, 439, 439))))
+                .addComponent(Design, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(txtdesign, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(btnajouter)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(98, 98, 98))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,16 +95,9 @@ public class EgliseView extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(139, 139, 139)
                         .addComponent(btnajouter)))
-                .addGap(124, 124, 124)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(id_supprimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(btnaffiche)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                .addGap(86, 236, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(93, 93, 93))
         );
@@ -156,62 +114,17 @@ public class EgliseView extends javax.swing.JFrame {
         EgliseController controller = new EgliseController(conn);
         String message = controller.ajouterEglise(design); // juste le nom, le solde est forcé à 0
 
-        Methodes.show(message);
+        Methodes.showSuccess(message);
         
         //appel de la fonction affichage
-         btnafficheActionPerformed(null);
+         AfficheEglise();
 
     } catch (Exception e) {
         e.printStackTrace();
-        Methodes.show("Erreur : " + e.getMessage());
+        Methodes.showError("Erreur : " + e.getMessage());
     }
         
     }//GEN-LAST:event_btnajouterActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     try {
-        String id_eglise = id_supprimer.getText().trim();
-        if (id_eglise.isEmpty()) {
-            Methodes.show("Veuillez entrer l'ID de l'église à supprimer.");
-            return;
-        }
-
-        Connection conn = Methodes.getconnexion();
-        if (conn == null) return;
-
-        EgliseController controller = new EgliseController(conn);
-        String message = controller.supprimerEglise(id_eglise);
-        Methodes.show(message);
-    } catch (Exception e) {
-        e.printStackTrace();
-        Methodes.show("Erreur lors de la suppression : " + e.getMessage());
-    }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void btnafficheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnafficheActionPerformed
-        try {
-            Connection conn = Methodes.getconnexion();
-            if (conn == null) return;
-
-            Eglise eglise = new Eglise(conn);
-            List<Map<String, Object>> data = eglise.afficheEglises();
-
-            // Traduction des colonnes
-            Map<String, String> titres = Map.of(
-                "ideglise", "ID",
-                "Design", "Nom de l'Église",
-                "Solde", "Solde Initial"
-            );
-
-            // Afficher
-            DefaultTableModel model = Methodes.createTableModel(data, titres);
-            tableEglises.setModel(model);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            Methodes.show("Erreur lors de l'affichage : " + e.getMessage());
-        }
-    }//GEN-LAST:event_btnafficheActionPerformed
 
     /**
      * @param args the command line arguments
@@ -237,14 +150,33 @@ public class EgliseView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new EgliseView().setVisible(true));
     }
+    public void AfficheEglise(){
+         try {
+            Connection conn = Methodes.getconnexion();
+            if (conn == null) return;
+
+            Eglise eglise = new Eglise(conn);
+            List<Map<String, Object>> data = eglise.afficheEglises();
+
+            // Traduction des colonnes
+            Map<String, String> titres = Map.of(
+                "ideglise", "ID",
+                "Design", "Nom de l'Église",
+                "Solde", "Solde Initial"
+            );
+
+            // Afficher
+            DefaultTableModel model = Methodes.createTableModel(data, titres);
+            tableEglises.setModel(model);
+
+        } catch (SQLException e) {
+            Methodes.show("Erreur lors de l'affichage : " + e.getMessage());
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Label Design;
-    private javax.swing.JButton btnaffiche;
     private javax.swing.JButton btnajouter;
-    private javax.swing.JTextField id_supprimer;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableEglises;
     private java.awt.TextField txtdesign;

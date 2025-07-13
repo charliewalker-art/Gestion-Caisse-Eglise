@@ -14,9 +14,24 @@ import javax.swing.table.DefaultTableModel;
 
 public class Methodes {
     
-      // Méthode statique pour afficher un message
+       // Message générique
     public static void show(String message) {
         JOptionPane.showMessageDialog(null, message);
+    }
+
+    // Message de succès (avec icône information)
+    public static void showSuccess(String message) {
+        JOptionPane.showMessageDialog(null, message, "Succès", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    // Message d'information
+    public static void showInfo(String message) {
+        JOptionPane.showMessageDialog(null, message, "Information", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    // Message d'erreur
+    public static void showError(String message) {
+        JOptionPane.showMessageDialog(null, message, "Erreur", JOptionPane.ERROR_MESSAGE);
     }
     
      public static Connection getconnexion() {
