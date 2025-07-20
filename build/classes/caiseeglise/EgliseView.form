@@ -23,82 +23,132 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-              <Component id="Design" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-              <Component id="txtdesign" min="-2" pref="65" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-              <Component id="btnajouter" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="157" max="32767" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="618" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
+              <Component id="PanelEglise" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="186" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Design" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtdesign" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
-                      <Component id="btnajouter" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="86" pref="236" max="32767" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+              <Component id="PanelEglise" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="103" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="btnajouter">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ajouter"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnajouterActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="java.awt.Label" name="Design">
-      <Properties>
-        <Property name="name" type="java.lang.String" value="desig" noResource="true"/>
-        <Property name="text" type="java.lang.String" value="Design"/>
-      </Properties>
-    </Component>
-    <Component class="java.awt.TextField" name="txtdesign">
-    </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
+    <Container class="javax.swing.JPanel" name="PanelEglise">
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jLabel1" min="-2" pref="101" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="Design" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="txtdesign" min="-2" pref="65" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="214" max="-2" attributes="0"/>
+                          <Component id="btnajouter" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="384" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="424" max="32767" attributes="0"/>
+                  <Component id="jLabel2" min="-2" pref="158" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="313" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <Component id="jLabel2" min="-2" pref="51" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="txtdesign" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="btnajouter" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="Design" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="388" max="-2" attributes="0"/>
+                  <EmptySpace pref="234" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tableEglises">
+        <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="0" rowCount="4"/>
-            </Property>
-            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-              <TableColumnModel selectionModel="0"/>
-            </Property>
-            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-            </Property>
+            <Property name="text" type="java.lang.String" value="Ajoute Eglise"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="PAGE EGLISE"/>
+          </Properties>
+        </Component>
+        <Component class="java.awt.TextField" name="txtdesign">
+        </Component>
+        <Component class="java.awt.Label" name="Design">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="desig" noResource="true"/>
+            <Property name="text" type="java.lang.String" value="Design"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnajouter">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ajouter"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnajouterActionPerformed"/>
+          </Events>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTable" name="tableEglises">
+              <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="0" rowCount="4"/>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0"/>
+                </Property>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
   </SubComponents>

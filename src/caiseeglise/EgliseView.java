@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -24,13 +25,16 @@ public class EgliseView extends javax.swing.JFrame {
         
         //appel de la fonction affiche
         AfficheEglise();
+       
         Style style = new Style();
         
         style.appliquerStyleTableau(tableEglises);
         style.styliserBouton(btnajouter);
         
     }
-
+ public JPanel getPanelEglise() {
+        return this.PanelEglise;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,13 +44,23 @@ public class EgliseView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnajouter = new javax.swing.JButton();
-        Design = new java.awt.Label();
+        PanelEglise = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         txtdesign = new java.awt.TextField();
+        Design = new java.awt.Label();
+        btnajouter = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableEglises = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Ajoute Eglise");
+
+        jLabel2.setText("PAGE EGLISE");
+
+        Design.setName("desig"); // NOI18N
+        Design.setText("Design");
 
         btnajouter.setText("Ajouter");
         btnajouter.addActionListener(new java.awt.event.ActionListener() {
@@ -54,9 +68,6 @@ public class EgliseView extends javax.swing.JFrame {
                 btnajouterActionPerformed(evt);
             }
         });
-
-        Design.setName("desig"); // NOI18N
-        Design.setText("Design");
 
         tableEglises.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -71,38 +82,66 @@ public class EgliseView extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableEglises);
 
+        javax.swing.GroupLayout PanelEgliseLayout = new javax.swing.GroupLayout(PanelEglise);
+        PanelEglise.setLayout(PanelEgliseLayout);
+        PanelEgliseLayout.setHorizontalGroup(
+            PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelEgliseLayout.createSequentialGroup()
+                .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelEgliseLayout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PanelEgliseLayout.createSequentialGroup()
+                                .addComponent(Design, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)
+                                .addComponent(txtdesign, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(PanelEgliseLayout.createSequentialGroup()
+                        .addGap(214, 214, 214)
+                        .addComponent(btnajouter))
+                    .addGroup(PanelEgliseLayout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelEgliseLayout.createSequentialGroup()
+                .addGap(0, 424, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(313, 313, 313))
+        );
+        PanelEgliseLayout.setVerticalGroup(
+            PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelEgliseLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelEgliseLayout.createSequentialGroup()
+                        .addComponent(txtdesign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(btnajouter))
+                    .addComponent(Design, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(234, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(Design, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addComponent(txtdesign, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(btnajouter)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(98, 98, 98))
+                .addGap(154, 154, 154)
+                .addComponent(PanelEglise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(186, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Design, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtdesign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(btnajouter)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(86, 236, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93))
+                .addGap(57, 57, 57)
+                .addComponent(PanelEglise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         pack();
@@ -179,7 +218,10 @@ public class EgliseView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Label Design;
+    private javax.swing.JPanel PanelEglise;
     private javax.swing.JButton btnajouter;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableEglises;
     private java.awt.TextField txtdesign;
