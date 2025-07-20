@@ -22,9 +22,10 @@ public class Menu extends javax.swing.JFrame {
         Style style = new Style();
         
   
-        style.styliserBouton(btn_englise);
-        style.styliserBouton(jButton1);
-        style.styliserBouton(btnaffichesortie);
+      style.styliserBoutonPrimary(btn_englise); 
+        style.styliserBoutonPrimary(jButton1);
+        style.styliserBoutonPrimary(btnaffichesortie);
+
         style.appliquerStyleH1(title);
         
          // Appeler la méthode jButton1ActionPerformed au démarrage
