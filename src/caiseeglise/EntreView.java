@@ -2,6 +2,8 @@
 package caiseeglise;
 
 //importation des clasee
+import caiseeglise.EgliseForm.EgliseAjoute;
+import caiseeglise.EntreForm.EntreAjoute;
 import caiseeglise.Models.Eglise;
 import caiseeglise.Models.Entre;
 import caiseeglise.Models.Methodes;
@@ -13,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+
+import caiseeglise.EntreForm.EntreAjoute;
 
 
 
@@ -28,8 +32,15 @@ public class EntreView extends javax.swing.JFrame {
         //appel de la fonction 
         AfficheEntre();
         
+        
+        
+        //classe eglise
         Style style = new Style();
         style.appliquerStyleTableau(tableEntres);
+        style.appliquerStyleH1(label1);
+        style.styliserBoutonPrimary(jButton1);
+        
+        
     }
  public JPanel getPannelAjouteEntre() {
         return this.PannelAjouteEntre;
@@ -81,18 +92,10 @@ public class EntreView extends javax.swing.JFrame {
         jFrame1 = new javax.swing.JFrame();
         jFrame2 = new javax.swing.JFrame();
         PannelAjouteEntre = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        txtmontantEntre = new javax.swing.JTextField();
-        txtideglise = new javax.swing.JTextField();
-        txtmotif = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableEntres = new javax.swing.JTable();
+        label1 = new java.awt.Label();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -131,24 +134,12 @@ public class EntreView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setText("Ajoute une Entre");
-
-        jLabel5.setText("id Eglise");
-
-        jLabel3.setText("Motif");
-
-        jLabel4.setText("Montant Entre");
-
         jButton1.setText("Ajoute");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        jButton2.setText("modifier");
-
-        jLabel1.setText("Gestion des entre ");
 
         tableEntres.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -163,77 +154,36 @@ public class EntreView extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tableEntres);
 
+        label1.setText("PAGE ENTRE");
+
         javax.swing.GroupLayout PannelAjouteEntreLayout = new javax.swing.GroupLayout(PannelAjouteEntre);
         PannelAjouteEntre.setLayout(PannelAjouteEntreLayout);
         PannelAjouteEntreLayout.setHorizontalGroup(
             PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
-                .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
-                        .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)))
-                            .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel4)))
-                        .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(txtmontantEntre, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtmotif, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
-                                        .addComponent(txtideglise, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel1))))))
-                    .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
-                        .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addComponent(jButton2)
-                                .addGap(59, 59, 59)
-                                .addComponent(jButton1))
-                            .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 456, Short.MAX_VALUE)))
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PannelAjouteEntreLayout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(271, 271, 271))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PannelAjouteEntreLayout.createSequentialGroup()
+                .addGap(131, 131, 131)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(360, 360, 360))
         );
         PannelAjouteEntreLayout.setVerticalGroup(
             PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
                 .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel2)
-                        .addGap(32, 32, 32)
-                        .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txtideglise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(16, 16, 16)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel1)))
-                .addGap(35, 35, 35)
-                .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtmotif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtmontantEntre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
-                .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addContainerGap()
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(229, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -248,66 +198,18 @@ public class EntreView extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(24, 24, 24)
                 .addComponent(PannelAjouteEntre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(311, Short.MAX_VALUE))
+                .addContainerGap(352, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     try {
-        String ideglise = txtideglise.getText().trim();
-        String motif = txtmotif.getText().trim();
-        String montantStr = txtmontantEntre.getText().trim();
-
-        if (ideglise.isEmpty() || motif.isEmpty() || montantStr.isEmpty()) {
-            Methodes.showError("Tous les champs doivent être remplis.");
-            return;
-        }
-
-        int montantEntre = Integer.parseInt(montantStr);
-        String dateEntre = java.time.LocalDate.now().toString();
-
-        Connection conn = Methodes.getconnexion();
-        if (conn == null) return;
-
-        conn.setAutoCommit(false);
-        try {
-            Entre entreModel = new Entre(conn);
-            Eglise egliseModel = new Eglise(conn);
-
-            String insertResult = entreModel.insertEntre(motif, montantEntre, dateEntre, ideglise);
-            if (!"INSERT_OK".equals(insertResult)) {
-                conn.rollback();
-                Methodes.showError(insertResult);
-                return;
-            }
-
-            String updateResult = egliseModel.mettreAJourSolde(ideglise, montantEntre);
-            if (!"UPDATE_OK".equals(updateResult)) {
-                conn.rollback();
-                Methodes.showError(updateResult);
-                return;
-            }
-
-            conn.commit();
-            Methodes.showSuccess("Entrée ajoutée et solde mis à jour avec succès.");
-            
-             AfficheEntre();
-        } catch (Exception ex) {
-            conn.rollback();
-            Methodes.showError("Erreur lors de la transaction : " + ex.getMessage());
-        } finally {
-            conn.setAutoCommit(true);
-            conn.close();
-        }
-    } catch (NumberFormatException e) {
-        Methodes.showError("Montant invalide. Veuillez entrer un nombre.");
-    } catch (Exception e) {
-        Methodes.showError("Erreur : " + e.getMessage());
-    }
+        EntreAjoute entreajoute = new EntreAjoute();
+        entreajoute.setLocationRelativeTo(null);
+        entreajoute.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -338,20 +240,12 @@ public class EntreView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PannelAjouteEntre;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private java.awt.Label label1;
     private javax.swing.JTable tableEntres;
-    private javax.swing.JTextField txtideglise;
-    private javax.swing.JTextField txtmontantEntre;
-    private javax.swing.JTextField txtmotif;
     // End of variables declaration//GEN-END:variables
 }
