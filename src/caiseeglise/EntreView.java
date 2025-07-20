@@ -96,6 +96,8 @@ public class EntreView extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableEntres = new javax.swing.JTable();
         label1 = new java.awt.Label();
+        btnrecherche = new javax.swing.JButton();
+        txtrecherche = new javax.swing.JTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -156,31 +158,45 @@ public class EntreView extends javax.swing.JFrame {
 
         label1.setText("PAGE ENTRE");
 
+        btnrecherche.setText("Recherche");
+        btnrecherche.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnrechercheActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PannelAjouteEntreLayout = new javax.swing.GroupLayout(PannelAjouteEntre);
         PannelAjouteEntre.setLayout(PannelAjouteEntreLayout);
         PannelAjouteEntreLayout.setHorizontalGroup(
             PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PannelAjouteEntreLayout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(271, 271, 271))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PannelAjouteEntreLayout.createSequentialGroup()
                 .addGap(131, 131, 131)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(97, 97, 97)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(360, 360, 360))
+                .addGap(98, 98, 98)
+                .addComponent(txtrecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(btnrecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PannelAjouteEntreLayout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(187, 187, 187))
         );
         PannelAjouteEntreLayout.setVerticalGroup(
             PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
                 .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnrecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtrecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(229, Short.MAX_VALUE))
@@ -212,6 +228,45 @@ public class EntreView extends javax.swing.JFrame {
         entreajoute.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnrechercheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrechercheActionPerformed
+        // TODO add your handling code here:
+          String motif = txtrecherche.getText().trim(); // Récupère le texte entré
+
+    if (motif.isEmpty()) {
+        Methodes.showInfo("Veuillez entrer un motif à rechercher.");
+        return;
+    }
+
+    try {
+        Connection conn = Methodes.getconnexion();
+        if (conn == null) return;
+
+        Entre entre = new Entre(conn);
+        List<Map<String, Object>> data = entre.rechercherParMotif(motif);
+
+        if (data.isEmpty()) {
+            Methodes.showInfo("Aucun résultat trouvé pour le motif : " + motif);
+            return;
+        }
+
+        // Titres pour affichage dans le tableau
+        Map<String, String> titres = Map.of(
+            "identre", "ID",
+            "motif", "Motif",
+            "montantEntre", "Montant",
+            "dateEntre", "Date",
+            "ideglise", "ID Église"
+        );
+
+        DefaultTableModel model = Methodes.createTableModel(data, titres);
+        tableEntres.setModel(model); // Assure-toi que TableEntre est bien déclaré
+
+    } catch (SQLException e) {
+        Methodes.showError("Erreur lors de la recherche : " + e.getMessage());
+    }
+        
+    }//GEN-LAST:event_btnrechercheActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -239,6 +294,7 @@ public class EntreView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PannelAjouteEntre;
+    private javax.swing.JButton btnrecherche;
     private javax.swing.JButton jButton1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
@@ -247,5 +303,6 @@ public class EntreView extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private java.awt.Label label1;
     private javax.swing.JTable tableEntres;
+    private javax.swing.JTextField txtrecherche;
     // End of variables declaration//GEN-END:variables
 }

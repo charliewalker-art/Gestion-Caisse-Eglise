@@ -28,8 +28,8 @@ public class SortieView extends javax.swing.JFrame {
         style.appliquerStyleTableau(TableSortie);
         style.appliquerStyleH1(label1);
         style.styliserBoutonPrimary(btnajouteSortie);
-        
-        
+           style.styliserBoutonSuccess(txtrechecehmotif);
+        style.styliserTextField(txtrecherceh);
         
         
         
@@ -53,6 +53,8 @@ public JPanel getPanelSortie() {
         btnajouteSortie = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TableSortie = new javax.swing.JTable();
+        txtrecherceh = new javax.swing.JTextField();
+        txtrechecehmotif = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,6 +80,15 @@ public JPanel getPanelSortie() {
         ));
         jScrollPane1.setViewportView(TableSortie);
 
+        txtrecherceh.setToolTipText("");
+
+        txtrechecehmotif.setText("Recherceh");
+        txtrechecehmotif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtrechecehmotifActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanleSortieLayout = new javax.swing.GroupLayout(PanleSortie);
         PanleSortie.setLayout(PanleSortieLayout);
         PanleSortieLayout.setHorizontalGroup(
@@ -87,26 +98,31 @@ public JPanel getPanelSortie() {
                     .addGroup(PanleSortieLayout.createSequentialGroup()
                         .addGap(97, 97, 97)
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(152, 152, 152)
-                        .addComponent(btnajouteSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(124, 124, 124)
+                        .addComponent(btnajouteSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)
+                        .addComponent(txtrecherceh, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(txtrechecehmotif, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanleSortieLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(21, 21, 21)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 931, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         PanleSortieLayout.setVerticalGroup(
             PanleSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanleSortieLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(PanleSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanleSortieLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PanleSortieLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(btnajouteSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanleSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnajouteSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanleSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtrecherceh, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtrechecehmotif, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(25, 25, 25)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -123,7 +139,7 @@ public JPanel getPanelSortie() {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(PanleSortie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
 
         pack();
@@ -136,6 +152,45 @@ public JPanel getPanelSortie() {
         Sortie.setLocationRelativeTo(null);
         Sortie.setVisible(true);
     }//GEN-LAST:event_btnajouteSortieActionPerformed
+
+    private void txtrechecehmotifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrechecehmotifActionPerformed
+        // TODO add your handling code here:
+   String motif = txtrecherceh.getText().trim(); // Vérifie si champ vide
+
+    if (motif.isEmpty()) {
+        Methodes.showInfo("Veuillez entrer un motif à rechercher.");
+        return;
+    }
+
+    try {
+        Connection conn = Methodes.getconnexion();
+        if (conn == null) return;
+
+        Sortie sortie = new Sortie(conn);
+        List<Map<String, Object>> data = sortie.rechercherParMotif(motif);
+
+        if (data.isEmpty()) {
+            Methodes.showInfo("Aucun résultat trouvé pour le motif : " + motif);
+            return; // ⛔ Ne pas mettre à jour le tableau si vide
+        }
+
+        // ✅ Seulement si on a des résultats : afficher dans la table
+        Map<String, String> titres = Map.of(
+            "idsortie", "ID",
+            "motif", "Motif",
+            "montantSortie", "Montant",
+            "dateSortie", "Date",
+            "ideglise", "ID Église"
+        );
+
+        DefaultTableModel model = Methodes.createTableModel(data, titres);
+        TableSortie.setModel(model);
+
+    } catch (SQLException e) {
+        Methodes.showError("Erreur lors de la recherche : " + e.getMessage());
+    }
+        
+    }//GEN-LAST:event_txtrechecehmotifActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,5 +249,7 @@ public JPanel getPanelSortie() {
     private javax.swing.JButton btnajouteSortie;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
+    private javax.swing.JButton txtrechecehmotif;
+    private javax.swing.JTextField txtrecherceh;
     // End of variables declaration//GEN-END:variables
 }
