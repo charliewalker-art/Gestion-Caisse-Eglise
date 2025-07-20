@@ -81,11 +81,29 @@ public String insertionEglise(String design) {
         );
 
         return insert(data); // appelle la méthode insert héritée de Table
-    } catch (Exception e) {
-        e.printStackTrace();
+    } catch (SQLException e) {
         return "Erreur lors de l'insertion : " + e.getMessage();
     }
 }
+public String mettreAJourSolde(String ideglise, int montant) {
+    String sql = "UPDATE EGLISE SET Solde = COALESCE(Solde, 0) + ? WHERE ideglise = ?";
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setInt(1, montant);
+        stmt.setString(2, ideglise);
+
+        int rows = stmt.executeUpdate();
+        System.out.println("Update Solde rows affected: " + rows);
+
+        if (rows == 0) {
+            return "UPDATE_NOT_FOUND";
+        }
+        return "UPDATE_OK";
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return "UPDATE_EXCEPTION: " + e.getMessage();
+    }
+}
+
 
 
     

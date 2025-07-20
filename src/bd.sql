@@ -35,6 +35,21 @@ CREATE TABLE IF NOT EXISTS `eglise` (
   PRIMARY KEY (`ideglise`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+
+
+
+CREATE TABLE entre (
+  identre INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  motif VARCHAR(255),
+  montantEntre INT,
+  dateEntre DATE,
+  ideglise VARCHAR(50),
+  FOREIGN KEY (ideglise) REFERENCES eglise(ideglise) 
+);
+
+
+
+
 --
 -- Dumping data for table `eglise`
 --
