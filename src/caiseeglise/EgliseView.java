@@ -24,7 +24,10 @@ public class EgliseView extends javax.swing.JFrame {
         
         //appel de la fonction affiche
         AfficheEglise();
+        Style style = new Style();
         
+        style.appliquerStyleTableau(tableEglises);
+        style.styliserBouton(btnajouter);
         
     }
 

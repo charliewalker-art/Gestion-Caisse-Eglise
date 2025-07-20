@@ -39,6 +39,29 @@ public String insertEntre(String motif, int montantEntre, String dateEntre, Stri
     }
 }
 
+//entre
+public List<Map<String, Object>> afficheEntres() throws SQLException {
+    List<Map<String, Object>> results = new ArrayList<>();
+
+    String sql = "SELECT * FROM " + nameTable + " ORDER BY " + primaryKey + " ASC";
+
+    try (PreparedStatement stmt = conn.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+
+        ResultSetMetaData meta = rs.getMetaData();
+        int columnCount = meta.getColumnCount();
+
+        while (rs.next()) {
+            Map<String, Object> row = new LinkedHashMap<>();
+            for (int i = 1; i <= columnCount; i++) {
+                row.put(meta.getColumnName(i), rs.getObject(i));
+            }
+            results.add(row);
+        }
+    }
+
+    return results;
+}
 
 
 }
