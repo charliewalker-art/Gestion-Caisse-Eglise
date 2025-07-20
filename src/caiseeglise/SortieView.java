@@ -1,13 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package caiseeglise;
 
-/**
- *
- * @author charlie
- */
+import caiseeglise.Models.Sortie;
+import caiseeglise.Models.Methodes;
+import caiseeglise.SortieForm.SortieAjouter;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
+
 public class SortieView extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SortieView.class.getName());
@@ -17,6 +21,22 @@ public class SortieView extends javax.swing.JFrame {
      */
     public SortieView() {
         initComponents();
+        //appel de la fonction affiche
+        affiche_Sortie();
+        
+         Style style = new Style();
+        style.appliquerStyleTableau(TableSortie);
+        style.appliquerStyleH1(label1);
+        style.styliserBoutonPrimary(btnajouteSortie);
+        
+        
+        
+        
+        
+         
+    }
+public JPanel getPanelSortie() {
+        return this.PanleSortie;
     }
 
     /**
@@ -28,40 +48,94 @@ public class SortieView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        PanleSortie = new javax.swing.JPanel();
+        label1 = new java.awt.Label();
+        btnajouteSortie = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TableSortie = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 326, Short.MAX_VALUE)
+        label1.setText("PAGE SORTIE");
+
+        btnajouteSortie.setText("Ajouter");
+        btnajouteSortie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnajouteSortieActionPerformed(evt);
+            }
+        });
+
+        TableSortie.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(TableSortie);
+
+        javax.swing.GroupLayout PanleSortieLayout = new javax.swing.GroupLayout(PanleSortie);
+        PanleSortie.setLayout(PanleSortieLayout);
+        PanleSortieLayout.setHorizontalGroup(
+            PanleSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanleSortieLayout.createSequentialGroup()
+                .addGroup(PanleSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanleSortieLayout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(152, 152, 152)
+                        .addComponent(btnajouteSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanleSortieLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 931, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
+        PanleSortieLayout.setVerticalGroup(
+            PanleSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanleSortieLayout.createSequentialGroup()
+                .addGroup(PanleSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanleSortieLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanleSortieLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(btnajouteSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(42, Short.MAX_VALUE)
+                .addComponent(PanleSortie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(PanleSortie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnajouteSortieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnajouteSortieActionPerformed
+        // TODO add your handling code here:
+        
+          SortieAjouter Sortie = new SortieAjouter();
+        Sortie.setLocationRelativeTo(null);
+        Sortie.setVisible(true);
+    }//GEN-LAST:event_btnajouteSortieActionPerformed
 
     /**
      * @param args the command line arguments
@@ -87,8 +161,38 @@ public class SortieView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new SortieView().setVisible(true));
     }
+    
+    public void affiche_Sortie(){
+         try {
+        Connection conn = Methodes.getconnexion();
+        if (conn == null) return;
+
+        Sortie sortie = new Sortie(conn);
+        List<Map<String, Object>> data = sortie.afficheSorties();
+
+        Map<String, String> titres = Map.of(
+            "idsortie", "ID",
+            "motif", "Motif",
+            "montantSortie", "Montant",
+            "dateSortie", "Date",
+            "ideglise", "ID Église"
+        );
+
+        DefaultTableModel model = Methodes.createTableModel(data, titres);
+        TableSortie.setModel(model); // ton JTable
+
+    } catch (SQLException e) {
+        Methodes.show("Erreur lors de l'affichage : " + e.getMessage());
+    }
+        
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel PanleSortie;
+    private javax.swing.JTable TableSortie;
+    private javax.swing.JButton btnajouteSortie;
+    private javax.swing.JScrollPane jScrollPane1;
+    private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 }

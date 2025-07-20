@@ -48,6 +48,16 @@ CREATE TABLE entre (
 );
 
 
+CREATE TABLE SORTIE (
+    idsortie INT AUTO_INCREMENT PRIMARY KEY,
+    ideglise VARCHAR(10) NOT NULL, 
+    motif VARCHAR(255) NOT NULL,
+    montantSortie INT NOT NULL,
+    dateSortie DATE NOT NULL,
+  FOREIGN KEY (ideglise) REFERENCES eglise(ideglise) 
+);
+
+
 
 
 --

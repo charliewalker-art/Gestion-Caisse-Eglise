@@ -78,6 +78,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         btnaffichesortie.setText("Sortie");
+        btnaffichesortie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaffichesortieActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -172,6 +177,21 @@ public class Menu extends javax.swing.JFrame {
     PanelMenu.revalidate();
     PanelMenu.repaint();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnaffichesortieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaffichesortieActionPerformed
+        // TODO add your handling code here:
+        SortieView Sortie = new SortieView();
+
+    JPanel PanleSortie = Sortie.getPanelSortie();
+
+    PanelMenu.removeAll();
+
+    PanelMenu.add(PanleSortie);
+
+    PanelMenu.revalidate();
+    PanelMenu.repaint();
+        
+    }//GEN-LAST:event_btnaffichesortieActionPerformed
 
     /**
      * @param args the command line arguments
