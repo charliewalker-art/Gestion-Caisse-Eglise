@@ -1,8 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package caiseeglise.EgliseForm;
+
+import caiseeglise.Models.Eglise;
+import caiseeglise.Models.Methodes;
+import caiseeglise.Style;
+import java.sql.Connection;
+
 
 /**
  *
@@ -17,6 +20,19 @@ public class EgliseModifier extends javax.swing.JFrame {
      */
     public EgliseModifier() {
         initComponents();
+        
+          setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+          
+          
+            //appele de la focntio style
+           Style style = new Style();
+           
+          
+           style.styliserBoutonPrimary(btnmodifier);
+           style.styliserBoutonSuccess(jButton1);
+          style.styliserTextField(txtideglise);
+         
+          style.styliserTextField(txtdesign);
     }
 
     /**
@@ -28,21 +44,126 @@ public class EgliseModifier extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        btnmodifier = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtideglise = new javax.swing.JTextField();
+        txtdesign = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Modifier Eglise");
+
+        jLabel2.setText("Design");
+
+        jButton1.setText("Annuler");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        btnmodifier.setText("Modifier");
+        btnmodifier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmodifierActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("ideglise");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtdesign, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                            .addComponent(txtideglise)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jButton1)
+                        .addGap(36, 36, 36)
+                        .addComponent(btnmodifier)))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jLabel1)
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtideglise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtdesign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(btnmodifier))
+                .addGap(43, 43, 43))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnmodifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodifierActionPerformed
+        // TODO add your handling code here:
+        
+          String ideglise = txtideglise.getText().trim();
+    String design = txtdesign.getText().trim();
+
+    if (ideglise.isEmpty() || design.isEmpty()) {
+        Methodes.showError("Veuillez remplir tous les champs.");
+        return;
+    }
+
+    // Récupérer la connexion via Methodes
+    Connection conn = (Connection) Methodes.getconnexion();
+    if (conn == null) {
+        Methodes.showError("Impossible de se connecter à la base de données.");
+        return;
+    }
+
+    // Instancier la classe Eglise
+    Eglise eglise = new Eglise((java.sql.Connection) conn);
+
+    // Appeler la méthode de modification
+    String resultat = eglise.modifierEglise(ideglise, design);
+
+    // Gérer les résultats avec Methodes.showSuccess/showError
+    switch (resultat) {
+        case "UPDATE_OK":
+            Methodes.showSuccess("Modification réussie !");
+            break;
+        case "UPDATE_NOT_FOUND":
+            Methodes.showError("Église non trouvée avec cet ID.");
+            break;
+        default:
+            Methodes.showError("Erreur lors de la modification : " + resultat);
+    }
+        
+    }//GEN-LAST:event_btnmodifierActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+          this.dispose(); // Ferme la fenêtre actuelle
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +191,12 @@ public class EgliseModifier extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnmodifier;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField txtdesign;
+    private javax.swing.JTextField txtideglise;
     // End of variables declaration//GEN-END:variables
 }

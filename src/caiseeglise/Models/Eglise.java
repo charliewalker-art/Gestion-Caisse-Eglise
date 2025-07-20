@@ -85,6 +85,7 @@ public String insertionEglise(String design) {
         return "Erreur lors de l'insertion : " + e.getMessage();
     }
 }
+//
 public String mettreAJourSolde(String ideglise, int montant) {
     String sql = "UPDATE EGLISE SET Solde = COALESCE(Solde, 0) + ? WHERE ideglise = ?";
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -103,7 +104,43 @@ public String mettreAJourSolde(String ideglise, int montant) {
         return "UPDATE_EXCEPTION: " + e.getMessage();
     }
 }
+//fonction modifier eglise 
+public String modifierEglise(String ideglise, String nouveauDesign) {
+    String sql = "UPDATE EGLISE SET Design = ? WHERE ideglise = ?";
+    
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, nouveauDesign);
+        stmt.setString(2, ideglise);
 
+        int rowsAffected = stmt.executeUpdate();
+
+        if (rowsAffected == 0) {
+            return "UPDATE_NOT_FOUND"; // Aucun enregistrement trouvé avec cet ID
+        }
+        return "UPDATE_OK";
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return "UPDATE_EXCEPTION: " + e.getMessage();
+    }
+}
+
+
+public String supprimerEglise(String ideglise) {
+    String sql = "DELETE FROM EGLISE WHERE ideglise = ?";
+    
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, ideglise);
+        int rowsAffected = stmt.executeUpdate();
+        
+        if (rowsAffected == 0) {
+            return "DELETE_NOT_FOUND"; // Aucun enregistrement supprimé, id non trouvé
+        }
+        return "DELETE_OK";
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return "DELETE_EXCEPTION: " + e.getMessage();
+    }
+}
 
 
     

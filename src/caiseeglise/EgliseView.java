@@ -3,8 +3,11 @@ package caiseeglise;
 //importation des classe 
 import caiseeglise.Controlleurs.EgliseController;
 import caiseeglise.EgliseForm.EgliseAjoute;
+import caiseeglise.EgliseForm.EgliseModifier;
+import caiseeglise.EgliseForm.EgliseSupprimer;
 import caiseeglise.Models.Eglise;
 import caiseeglise.Models.Methodes;
+import java.awt.Label;
 //importation des object
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -30,7 +33,13 @@ public class EgliseView extends javax.swing.JFrame {
         Style style = new Style();
         
         style.appliquerStyleTableau(tableEglises);
-        style.styliserBouton(btnajouter);
+        style.styliserBoutonPrimary(btnajouter);
+          style.styliserBoutonDanger(btnsupprimer);
+        
+        style.appliquerStyleH1(title);
+        
+         style.styliserBoutonSuccess(btnmodifier);
+        
         
     }
  public JPanel getPanelEglise() {
@@ -46,14 +55,14 @@ public class EgliseView extends javax.swing.JFrame {
     private void initComponents() {
 
         PanelEglise = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         btnajouter = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableEglises = new javax.swing.JTable();
+        title = new java.awt.Label();
+        btnmodifier = new javax.swing.JButton();
+        btnsupprimer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel2.setText("PAGE EGLISE");
 
         btnajouter.setText("Ajouter");
         btnajouter.addActionListener(new java.awt.event.ActionListener() {
@@ -75,6 +84,22 @@ public class EgliseView extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableEglises);
 
+        title.setText("PAGE EGLISE");
+
+        btnmodifier.setText("Modifier");
+        btnmodifier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmodifierActionPerformed(evt);
+            }
+        });
+
+        btnsupprimer.setText("Supprimer");
+        btnsupprimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsupprimerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelEgliseLayout = new javax.swing.GroupLayout(PanelEglise);
         PanelEglise.setLayout(PanelEgliseLayout);
         PanelEgliseLayout.setHorizontalGroup(
@@ -82,10 +107,14 @@ public class EgliseView extends javax.swing.JFrame {
             .addGroup(PanelEgliseLayout.createSequentialGroup()
                 .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelEgliseLayout.createSequentialGroup()
-                        .addGap(268, 268, 268)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78)
-                        .addComponent(btnajouter, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(163, 163, 163)
+                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(btnajouter, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(btnmodifier, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(btnsupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelEgliseLayout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 759, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -94,11 +123,17 @@ public class EgliseView extends javax.swing.JFrame {
         PanelEgliseLayout.setVerticalGroup(
             PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelEgliseLayout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnajouter, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                .addGap(10, 10, 10)
+                .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PanelEgliseLayout.createSequentialGroup()
+                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelEgliseLayout.createSequentialGroup()
+                        .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnmodifier, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnajouter, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnsupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(335, Short.MAX_VALUE))
         );
@@ -117,7 +152,7 @@ public class EgliseView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(PanelEglise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
 
         pack();
@@ -131,6 +166,20 @@ public class EgliseView extends javax.swing.JFrame {
     egliseAjoute.setVisible(true);
         
     }//GEN-LAST:event_btnajouterActionPerformed
+
+    private void btnmodifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodifierActionPerformed
+        // TODO add your handling code here:
+        EgliseModifier modifier = new EgliseModifier();
+         modifier.setLocationRelativeTo(null);
+        modifier.setVisible(true);
+    }//GEN-LAST:event_btnmodifierActionPerformed
+
+    private void btnsupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsupprimerActionPerformed
+        // TODO add your handling code here:
+        EgliseSupprimer supprimer = new EgliseSupprimer();
+        supprimer.setLocationRelativeTo(null);
+        supprimer.setVisible(true);
+    }//GEN-LAST:event_btnsupprimerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,8 +232,10 @@ public class EgliseView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelEglise;
     private javax.swing.JButton btnajouter;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton btnmodifier;
+    private javax.swing.JButton btnsupprimer;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableEglises;
+    private java.awt.Label title;
     // End of variables declaration//GEN-END:variables
 }
