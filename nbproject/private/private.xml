@@ -3,15 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/EgliseView.java</file>
-            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/Models/Methodes.java</file>
-            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/Models/Eglise.java</file>
-            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/bd.sql</file>
-            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/Models/Table.java</file>
-            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/Models/Database.java</file>
-            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/Models/Entre.java</file>
             <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/EntreView.java</file>
+            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/EgliseForm/EgliseSupprimer.java</file>
+            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/EgliseForm/EgliseModifier.java</file>
+            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/EntreForm/EntreAjoute.java</file>
+            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/EgliseForm/EgliseAjoute.java</file>
+            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/EgliseView.java</file>
+            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/SortieView.java</file>
+            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/SortieForm/SortieAjouter.java</file>
+            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/bd.sql</file>
+            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/Models/Sortie.java</file>
+            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/Models/Table.java</file>
+            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/Models/Entre.java</file>
+            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/Models/Eglise.java</file>
             <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/CaiseEglise.java</file>
+            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/Menu.java</file>
+            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/Models/Database.java</file>
+            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/pdf.java</file>
+            <file>file:/C:/Users/charlie/Documents/NetBeansProjects/CaiseEglise/src/caiseeglise/Style.java</file>
         </group>
     </open-files>
 </project-private>

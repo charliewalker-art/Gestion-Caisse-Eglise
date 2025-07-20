@@ -98,6 +98,12 @@ public class EntreView extends javax.swing.JFrame {
         label1 = new java.awt.Label();
         btnrecherche = new javax.swing.JButton();
         txtrecherche = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        date_debut = new com.toedter.calendar.JDateChooser();
+        date_fin = new com.toedter.calendar.JDateChooser();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        btnmovcaisseentre = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -165,40 +171,86 @@ public class EntreView extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Mouvement de caisse entre deux dates");
+
+        jLabel2.setText("Debut");
+
+        jLabel3.setText("Fin");
+
+        btnmovcaisseentre.setText("mouvement de caisse");
+        btnmovcaisseentre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmovcaisseentreActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PannelAjouteEntreLayout = new javax.swing.GroupLayout(PannelAjouteEntre);
         PannelAjouteEntre.setLayout(PannelAjouteEntreLayout);
         PannelAjouteEntreLayout.setHorizontalGroup(
             PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PannelAjouteEntreLayout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(98, 98, 98)
-                .addComponent(txtrecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(btnrecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PannelAjouteEntreLayout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(187, 187, 187))
+            .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
+                        .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
+                                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(119, 119, 119)
+                                .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
+                                        .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel3))
+                                        .addGap(68, 68, 68)
+                                        .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(date_debut, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(date_fin, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel1))
+                                .addGap(260, 260, 260)
+                                .addComponent(txtrecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(btnrecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
+                                .addGap(580, 580, 580)
+                                .addComponent(btnmovcaisseentre, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PannelAjouteEntreLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(187, 187, 187))))
         );
         PannelAjouteEntreLayout.setVerticalGroup(
             PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
                 .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
+                        .addGap(39, 39, 39)
                         .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnrecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtrecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtrecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnrecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(16, 16, 16)
+                .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(date_debut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(btnmovcaisseentre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3))
+                    .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(date_fin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(229, Short.MAX_VALUE))
         );
 
@@ -209,14 +261,14 @@ public class EntreView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addComponent(PannelAjouteEntre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(PannelAjouteEntre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(352, Short.MAX_VALUE))
+                .addContainerGap(326, Short.MAX_VALUE))
         );
 
         pack();
@@ -267,6 +319,46 @@ public class EntreView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnrechercheActionPerformed
 
+    private void btnmovcaisseentreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmovcaisseentreActionPerformed
+        // TODO add your handling code here:
+ // Vérifier que les dates sont bien sélectionnées
+    if (date_debut.getDate() == null || date_fin.getDate() == null) {
+        Methodes.showInfo("Veuillez sélectionner les deux dates.");
+        return;
+    }
+
+    // Récupérer les dates depuis les JDateChooser
+    java.util.Date utilDateDebut = date_debut.getDate();
+    java.util.Date utilDateFin = date_fin.getDate();
+
+    try {
+        Connection conn = Methodes.getconnexion();
+        if (conn == null) return;
+
+        Entre entre = new Entre(conn);
+        List<Map<String, Object>> data = entre.rechercherParDates(utilDateDebut, utilDateFin);
+
+        if (data.isEmpty()) {
+            Methodes.showInfo("Aucun mouvement trouvé entre ces deux dates.");
+            return;
+        }
+
+        // Colonnes à afficher dans le tableau
+        Map<String, String> titres = Map.of(
+            "dateEntre", "Date d’entrée",
+            "motif", "Motif",
+            "montantEntre", "Montant"
+        );
+
+        DefaultTableModel model = Methodes.createTableModel(data, titres);
+        tableEntres.setModel(model); // Remplir ton JTable
+
+    } catch (SQLException e) {
+        Methodes.showError("Erreur lors de la recherche : " + e.getMessage());
+    }
+
+    }//GEN-LAST:event_btnmovcaisseentreActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -294,10 +386,16 @@ public class EntreView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PannelAjouteEntre;
+    private javax.swing.JButton btnmovcaisseentre;
     private javax.swing.JButton btnrecherche;
+    private com.toedter.calendar.JDateChooser date_debut;
+    private com.toedter.calendar.JDateChooser date_fin;
     private javax.swing.JButton jButton1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;

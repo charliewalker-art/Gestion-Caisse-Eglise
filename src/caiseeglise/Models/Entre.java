@@ -2,6 +2,7 @@ package caiseeglise.Models;
 
 import java.sql.*;
 import java.util.*;
+import java.util.Date;
 
 public class Entre extends Table {
 
@@ -62,6 +63,7 @@ public List<Map<String, Object>> afficheEntres() throws SQLException {
 
     return results;
 }
+//fonction recherche
 public List<Map<String, Object>> rechercherParMotif(String motifRecherche) throws SQLException {
     List<Map<String, Object>> results = new ArrayList<>();
 
@@ -69,6 +71,32 @@ public List<Map<String, Object>> rechercherParMotif(String motifRecherche) throw
 
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
         stmt.setString(1, "%" + motifRecherche + "%");
+
+        try (ResultSet rs = stmt.executeQuery()) {
+            ResultSetMetaData meta = rs.getMetaData();
+            int columnCount = meta.getColumnCount();
+
+            while (rs.next()) {
+                Map<String, Object> row = new LinkedHashMap<>();
+                for (int i = 1; i <= columnCount; i++) {
+                    row.put(meta.getColumnName(i), rs.getObject(i));
+                }
+                results.add(row);
+            }
+        }
+    }
+
+    return results;
+}
+    public List<Map<String, Object>> rechercherParDates(Date dateA, Date dateB) throws SQLException {
+    List<Map<String, Object>> results = new ArrayList<>();
+
+    String sql = "SELECT dateEntre, motif, montantEntre FROM " + nameTable + 
+                 " WHERE dateEntre BETWEEN ? AND ? ORDER BY dateEntre ASC";
+
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setDate(1, new java.sql.Date(dateA.getTime()));
+        stmt.setDate(2, new java.sql.Date(dateB.getTime()));
 
         try (ResultSet rs = stmt.executeQuery()) {
             ResultSetMetaData meta = rs.getMetaData();
