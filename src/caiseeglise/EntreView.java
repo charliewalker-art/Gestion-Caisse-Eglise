@@ -17,6 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 import caiseeglise.EntreForm.EntreAjoute;
+import caiseeglise.EntreForm.EntreModifier;
+import caiseeglise.EntreForm.EntreSupprimer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -41,6 +43,8 @@ public class EntreView extends javax.swing.JFrame {
         style.appliquerStyleTableau(tableEntres);
         style.appliquerStyleH1(label1);
         style.styliserBoutonPrimary(jButton1);
+          style.styliserBoutonDanger(btnshowsupprimer);
+            style.styliserBoutonSuccess(btnmodieirshow);
         
         
     }
@@ -100,6 +104,8 @@ public class EntreView extends javax.swing.JFrame {
         label1 = new java.awt.Label();
         btnrecherche = new javax.swing.JButton();
         txtrecherche = new javax.swing.JTextField();
+        btnmodieirshow = new javax.swing.JButton();
+        btnshowsupprimer = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -167,26 +173,46 @@ public class EntreView extends javax.swing.JFrame {
             }
         });
 
+        btnmodieirshow.setText("Modifier");
+        btnmodieirshow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmodieirshowActionPerformed(evt);
+            }
+        });
+
+        btnshowsupprimer.setText("Supprimer");
+        btnshowsupprimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnshowsupprimerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PannelAjouteEntreLayout = new javax.swing.GroupLayout(PannelAjouteEntre);
         PannelAjouteEntre.setLayout(PannelAjouteEntreLayout);
         PannelAjouteEntreLayout.setHorizontalGroup(
             PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(txtrecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnrecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(423, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PannelAjouteEntreLayout.createSequentialGroup()
-                .addContainerGap(83, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 846, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74))
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(txtrecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(btnrecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(110, 110, 110)
+                        .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnmodieirshow, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnshowsupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PannelAjouteEntreLayout.createSequentialGroup()
+                        .addGap(0, 73, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 846, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(74, 74, 74))))
         );
         PannelAjouteEntreLayout.setVerticalGroup(
             PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,11 +225,19 @@ public class EntreView extends javax.swing.JFrame {
                             .addComponent(btnrecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(57, 57, 57)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PannelAjouteEntreLayout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(btnshowsupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(PannelAjouteEntreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PannelAjouteEntreLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(btnmodieirshow, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(182, Short.MAX_VALUE))
         );
 
@@ -272,6 +306,21 @@ public class EntreView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnrechercheActionPerformed
 
+    private void btnmodieirshowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodieirshowActionPerformed
+        // TODO add your handling code here:
+         EntreModifier entremodifier = new EntreModifier();
+        entremodifier.setLocationRelativeTo(null);
+        entremodifier.setVisible(true);
+    }//GEN-LAST:event_btnmodieirshowActionPerformed
+
+    private void btnshowsupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnshowsupprimerActionPerformed
+        // TODO add your handling code here:
+       
+         EntreSupprimer entresupprimer = new EntreSupprimer();
+        entresupprimer.setLocationRelativeTo(null);
+        entresupprimer.setVisible(true);
+    }//GEN-LAST:event_btnshowsupprimerActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -299,7 +348,9 @@ public class EntreView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PannelAjouteEntre;
+    private javax.swing.JButton btnmodieirshow;
     private javax.swing.JButton btnrecherche;
+    private javax.swing.JButton btnshowsupprimer;
     private javax.swing.JButton jButton1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;

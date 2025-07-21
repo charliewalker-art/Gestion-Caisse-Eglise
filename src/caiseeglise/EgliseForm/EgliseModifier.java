@@ -51,6 +51,8 @@ public class EgliseModifier extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtideglise = new javax.swing.JTextField();
         txtdesign = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtsolde = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,6 +76,8 @@ public class EgliseModifier extends javax.swing.JFrame {
 
         jLabel3.setText("ideglise");
 
+        jLabel4.setText("Montant");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,14 +85,21 @@ public class EgliseModifier extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(30, 30, 30)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(62, 62, 62)
+                                .addComponent(jLabel3)
+                                .addGap(30, 30, 30))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel2))
+                                .addGap(43, 43, 43)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtdesign, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-                            .addComponent(txtideglise)))
+                            .addComponent(txtideglise)
+                            .addComponent(txtsolde)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(104, 104, 104)
                         .addComponent(jLabel1))
@@ -108,11 +119,15 @@ public class EgliseModifier extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtideglise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtdesign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                    .addComponent(txtdesign, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtsolde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(btnmodifier))
@@ -125,28 +140,36 @@ public class EgliseModifier extends javax.swing.JFrame {
     private void btnmodifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodifierActionPerformed
         // TODO add your handling code here:
         
-          String ideglise = txtideglise.getText().trim();
+      String ideglise = txtideglise.getText().trim();
     String design = txtdesign.getText().trim();
+    String soldeStr = txtsolde.getText().trim();
 
-    if (ideglise.isEmpty() || design.isEmpty()) {
+    // Vérification des champs
+    if (ideglise.isEmpty() || design.isEmpty() || soldeStr.isEmpty()) {
         Methodes.showError("Veuillez remplir tous les champs.");
         return;
     }
 
-    // Récupérer la connexion via Methodes
-    Connection conn = (Connection) Methodes.getconnexion();
+    int solde;
+    try {
+        solde = Integer.parseInt(soldeStr);
+    } catch (NumberFormatException e) {
+        Methodes.showError("Le solde doit être un nombre entier valide.");
+        return;
+    }
+
+    // Connexion à la base
+    Connection conn = Methodes.getconnexion();
     if (conn == null) {
         Methodes.showError("Impossible de se connecter à la base de données.");
         return;
     }
 
-    // Instancier la classe Eglise
-    Eglise eglise = new Eglise((java.sql.Connection) conn);
+    // Modifier l'église
+    Eglise eglise = new Eglise(conn);
+    String resultat = eglise.modifierEglise(ideglise, design, solde);
 
-    // Appeler la méthode de modification
-    String resultat = eglise.modifierEglise(ideglise, design);
-
-    // Gérer les résultats avec Methodes.showSuccess/showError
+    // Gestion du résultat
     switch (resultat) {
         case "UPDATE_OK":
             Methodes.showSuccess("Modification réussie !");
@@ -196,7 +219,9 @@ public class EgliseModifier extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField txtdesign;
     private javax.swing.JTextField txtideglise;
+    private javax.swing.JTextField txtsolde;
     // End of variables declaration//GEN-END:variables
 }
