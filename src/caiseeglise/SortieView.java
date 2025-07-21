@@ -30,8 +30,11 @@ public class SortieView extends javax.swing.JFrame {
         style.appliquerStyleTableau(TableSortie);
         style.appliquerStyleH1(label1);
         style.styliserBoutonPrimary(btnajouteSortie);
-           style.styliserBoutonSuccess(txtrechecehmotif);
-        style.styliserTextField(txtrecherceh);
+          style.styliserBoutonSuccess(btn_modifier_show);
+            style.styliserBoutonDanger(btnsupprimeshow);
+           style.styliserBoutonWarning(txtrechecehmotif);
+        
+           style.styliserTextField(txtrecherceh);
         
         
         
@@ -112,11 +115,13 @@ public JPanel getPanelSortie() {
         PanleSortieLayout.setHorizontalGroup(
             PanleSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanleSortieLayout.createSequentialGroup()
+                .addGap(83, 83, 83)
                 .addGroup(PanleSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 869, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PanleSortieLayout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)
+                        .addGap(26, 26, 26)
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
                         .addComponent(btnajouteSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(btn_modifier_show, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -125,10 +130,7 @@ public JPanel getPanelSortie() {
                         .addGap(37, 37, 37)
                         .addComponent(txtrecherceh, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
-                        .addComponent(txtrechecehmotif, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PanleSortieLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 931, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtrechecehmotif, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         PanleSortieLayout.setVerticalGroup(
@@ -144,8 +146,8 @@ public JPanel getPanelSortie() {
                             .addComponent(txtrechecehmotif, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnajouteSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_modifier_show, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(14, 14, 14)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 

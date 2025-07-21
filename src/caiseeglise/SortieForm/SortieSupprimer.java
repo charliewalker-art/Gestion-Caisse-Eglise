@@ -20,6 +20,15 @@ public class SortieSupprimer extends javax.swing.JFrame {
         initComponents();
         
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        
+        
+        Style style = new Style();
+           
+          
+           style.styliserBoutonPrimary(jButton1);
+           style.styliserBoutonDanger(btnsupprimer);
+          style.styliserTextField(txtidsortie);
+            
     }
 
     /**

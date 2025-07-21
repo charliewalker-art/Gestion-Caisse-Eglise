@@ -17,6 +17,21 @@ public class Histograminfo extends javax.swing.JFrame {
     public Histograminfo() {
         initComponents();
         
+         // Attend que la fenêtre soit visible pour afficher correctement
+    
+        appel_affiche();
+    
+          //classe eglise
+        Style style = new Style();
+      
+       
+        style.styliserBoutonPrimary(btngenerehisto);
+          
+            
+            
+                style.styliserTextField(txtideglise);
+                
+                style.styliserTextField(txtmois);
         
    
     }
@@ -150,6 +165,8 @@ public class Histograminfo extends javax.swing.JFrame {
 
     PanelHisto.removeAll();
     PanelHisto.setLayout(new BorderLayout());
+    
+//  mise en place d'apple
 
     HistogrammeCaisse histogramme = new HistogrammeCaisse(txtideglise, mois);
 
@@ -160,6 +177,24 @@ public class Histograminfo extends javax.swing.JFrame {
     PanelHisto.repaint();
     }//GEN-LAST:event_btngenerehistoActionPerformed
 
+     public void appel_affiche() {
+        // Vérifie que le panel a une taille correcte (parfois non dispo à l'init)
+        if (PanelHisto == null || PanelHisto.getWidth() == 0) {
+            System.out.println("PanelHisto n'est pas encore prêt !");
+            return;
+        }
+
+        HistogrammeCaisse histogramme = new HistogrammeCaisse("EG001", 7);
+        histogramme.setPreferredSize(PanelHisto.getSize()); 
+        PanelHisto.setLayout(new BorderLayout());
+        PanelHisto.removeAll(); // Vide l'ancien contenu
+
+        PanelHisto.add(histogramme, BorderLayout.CENTER);
+        PanelHisto.revalidate();
+        PanelHisto.repaint();
+    }
+    
+    
     /**
      * @param args the command line arguments
      */

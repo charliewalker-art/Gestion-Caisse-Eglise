@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 import caiseeglise.Style;
+import java.util.Date;
 
 public class EntreAjoute extends javax.swing.JFrame {
     
@@ -62,10 +63,12 @@ public class EntreAjoute extends javax.swing.JFrame {
         txtmontantEntre = new javax.swing.JTextField();
         btnajoute = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        dateentre = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Ajoute une sortie");
+        jLabel1.setText("Ajoute une Entre");
 
         jLabel2.setText("id Eglise");
 
@@ -87,6 +90,8 @@ public class EntreAjoute extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("date");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,7 +99,21 @@ public class EntreAjoute extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(125, 125, 125)
                 .addComponent(jLabel1)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jButton2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnajoute)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(dateentre, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,24 +121,19 @@ public class EntreAjoute extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtmotif)
-                    .addComponent(txtmontantEntre, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                    .addComponent(txtideglise))
-                .addGap(12, 12, 12))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnajoute)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtmotif, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                        .addComponent(txtideglise))
+                    .addComponent(txtmontantEntre, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(44, 44, 44)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtideglise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -129,9 +143,13 @@ public class EntreAjoute extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtmontantEntre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                    .addComponent(txtmontantEntre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dateentre, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnajoute)
                     .addComponent(jButton2))
@@ -148,18 +166,18 @@ public class EntreAjoute extends javax.swing.JFrame {
 
     private void btnajouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnajouteActionPerformed
         // TODO add your handling code here:
-         try {
+        try {
         String ideglise = txtideglise.getText().trim();
         String motif = txtmotif.getText().trim();
         String montantStr = txtmontantEntre.getText().trim();
+        Date dateEntre = dateentre.getDate(); // <- JDateChooser ici
 
-        if (ideglise.isEmpty() || motif.isEmpty() || montantStr.isEmpty()) {
+        if (ideglise.isEmpty() || motif.isEmpty() || montantStr.isEmpty() || dateEntre == null) {
             Methodes.showError("Tous les champs doivent être remplis.");
             return;
         }
 
         int montantEntre = Integer.parseInt(montantStr);
-        String dateEntre = java.time.LocalDate.now().toString();
 
         Connection conn = Methodes.getconnexion();
         if (conn == null) return;
@@ -185,8 +203,6 @@ public class EntreAjoute extends javax.swing.JFrame {
 
             conn.commit();
             Methodes.showSuccess("Entrée ajoutée et solde mis à jour avec succès.");
-            
-             
         } catch (Exception ex) {
             conn.rollback();
             Methodes.showError("Erreur lors de la transaction : " + ex.getMessage());
@@ -199,7 +215,6 @@ public class EntreAjoute extends javax.swing.JFrame {
     } catch (Exception e) {
         Methodes.showError("Erreur : " + e.getMessage());
     }
-        
         
     }//GEN-LAST:event_btnajouteActionPerformed
 
@@ -230,11 +245,13 @@ public class EntreAjoute extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnajoute;
+    private com.toedter.calendar.JDateChooser dateentre;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField txtideglise;
     private javax.swing.JTextField txtmontantEntre;
     private javax.swing.JTextField txtmotif;

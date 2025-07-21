@@ -20,12 +20,12 @@ public class Entre extends Table {
         return "Entrée";
     }
 
-public String insertEntre(String motif, int montantEntre, String dateEntre, String ideglise) {
+public String insertEntre(String motif, int montantEntre, Date dateEntre, String ideglise) {
     String sql = "INSERT INTO ENTRE (motif, montantEntre, dateEntre, ideglise) VALUES (?, ?, ?, ?)";
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
         stmt.setString(1, motif);
         stmt.setInt(2, montantEntre);
-        stmt.setString(3, dateEntre);
+        stmt.setDate(3, new java.sql.Date(dateEntre.getTime())); // conversion correcte
         stmt.setString(4, ideglise);
 
         int rows = stmt.executeUpdate();
@@ -39,6 +39,7 @@ public String insertEntre(String motif, int montantEntre, String dateEntre, Stri
         return "INSERT_EXCEPTION: " + e.getMessage();
     }
 }
+
 
 //fonction affiche Entre
 public List<Map<String, Object>> afficheEntres() throws SQLException {
