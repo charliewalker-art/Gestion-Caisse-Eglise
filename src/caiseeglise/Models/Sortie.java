@@ -2,7 +2,7 @@ package caiseeglise.Models;
 
 import java.sql.*;
 import java.util.*;
-
+import java.util.Date;
 public class Sortie extends Table {
 
     public Sortie(Connection conn) {
@@ -116,6 +116,38 @@ public List<Map<String, Object>> afficheSorties() throws SQLException {
 
     return results;
 }
+
+    
+  public List<Map<String, Object>> rechercherParDates(Date dateA, Date dateB, String idEglise) throws SQLException {
+    List<Map<String, Object>> results = new ArrayList<>();
+
+    String sql = "SELECT dateSortie, motif, montantSortie FROM " + nameTable +
+                 " WHERE dateSortie BETWEEN ? AND ? AND ideglise = ? ORDER BY dateSortie ASC";
+
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setDate(1, new java.sql.Date(dateA.getTime()));
+        stmt.setDate(2, new java.sql.Date(dateB.getTime()));
+        stmt.setString(3, idEglise);  // 
+
+        try (ResultSet rs = stmt.executeQuery()) {
+            ResultSetMetaData meta = rs.getMetaData();
+            int columnCount = meta.getColumnCount();
+
+            while (rs.next()) {
+                Map<String, Object> row = new LinkedHashMap<>();
+                for (int i = 1; i <= columnCount; i++) {
+                    row.put(meta.getColumnName(i), rs.getObject(i));
+                }
+
+                row.put("typeMouvement", "Sortie");
+                results.add(row);
+            }
+        }
+    }
+
+    return results;
+}
+
 
 }
  

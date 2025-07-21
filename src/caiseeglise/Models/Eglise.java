@@ -143,5 +143,61 @@ public String supprimerEglise(String ideglise) {
 }
 
 
-    
+    //mouvemen Eglise
+
+public List<Map<String, Object>> getMouvementCaisse(Date dateA, Date dateB, String idEglise) throws SQLException {
+    List<Map<String, Object>> mouvements = new ArrayList<>();
+    double totalEntree = 0;
+    double totalSortie = 0;
+
+    Entre entre = new Entre(conn);
+    Sortie sortie = new Sortie(conn);
+
+    List<Map<String, Object>> entrees = entre.rechercherParDates(dateA, dateB, idEglise);
+    List<Map<String, Object>> sorties = sortie.rechercherParDates(dateA, dateB, idEglise);
+
+    for (Map<String, Object> e : entrees) {
+        Map<String, Object> row = new LinkedHashMap<>();
+        row.put("date", e.get("dateEntre"));
+        row.put("typeMouvement", e.get("typeMouvement"));
+        row.put("motif", e.get("motif"));
+        row.put("montant", e.get("montantEntre"));
+        totalEntree += ((Number) e.get("montantEntre")).doubleValue();
+        mouvements.add(row);
+    }
+
+    for (Map<String, Object> s : sorties) {
+        Map<String, Object> row = new LinkedHashMap<>();
+        row.put("date", s.get("dateSortie"));
+        row.put("typeMouvement", s.get("typeMouvement"));
+        row.put("motif", s.get("motif"));
+        row.put("montant", s.get("montantSortie"));
+        totalSortie += ((Number) s.get("montantSortie")).doubleValue();
+        mouvements.add(row);
+    }
+
+    // Totaux
+    if (totalEntree > 0) {
+        Map<String, Object> totalE = new LinkedHashMap<>();
+        totalE.put("date", "Total Entrée");
+        totalE.put("typeMouvement", "");
+        totalE.put("motif", "");
+        totalE.put("montant", totalEntree);
+        mouvements.add(totalE);
+    }
+
+    if (totalSortie > 0) {
+        Map<String, Object> totalS = new LinkedHashMap<>();
+        totalS.put("date", "Total Sortie");
+        totalS.put("typeMouvement", "");
+        totalS.put("motif", "");
+        totalS.put("montant", totalSortie);
+        mouvements.add(totalS);
+    }
+
+    return mouvements;
+}
+
+
+
 }

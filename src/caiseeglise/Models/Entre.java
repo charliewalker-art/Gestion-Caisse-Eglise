@@ -88,15 +88,19 @@ public List<Map<String, Object>> rechercherParMotif(String motifRecherche) throw
 
     return results;
 }
-    public List<Map<String, Object>> rechercherParDates(Date dateA, Date dateB) throws SQLException {
+
+//fontion 
+
+public List<Map<String, Object>> rechercherParDates(Date dateA, Date dateB, String idEglise) throws SQLException {
     List<Map<String, Object>> results = new ArrayList<>();
 
     String sql = "SELECT dateEntre, motif, montantEntre FROM " + nameTable + 
-                 " WHERE dateEntre BETWEEN ? AND ? ORDER BY dateEntre ASC";
+                 " WHERE dateEntre BETWEEN ? AND ? AND ideglise = ? ORDER BY dateEntre ASC";
 
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
         stmt.setDate(1, new java.sql.Date(dateA.getTime()));
         stmt.setDate(2, new java.sql.Date(dateB.getTime()));
+        stmt.setString(3, idEglise);  // 🔁 correction ici
 
         try (ResultSet rs = stmt.executeQuery()) {
             ResultSetMetaData meta = rs.getMetaData();
@@ -107,6 +111,8 @@ public List<Map<String, Object>> rechercherParMotif(String motifRecherche) throw
                 for (int i = 1; i <= columnCount; i++) {
                     row.put(meta.getColumnName(i), rs.getObject(i));
                 }
+
+                row.put("typeMouvement", "Entrée");
                 results.add(row);
             }
         }
@@ -115,5 +121,7 @@ public List<Map<String, Object>> rechercherParMotif(String motifRecherche) throw
     return results;
 }
 
+    
+    //fonction entre 
 
 }

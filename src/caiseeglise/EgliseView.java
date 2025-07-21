@@ -61,6 +61,14 @@ public class EgliseView extends javax.swing.JFrame {
         title = new java.awt.Label();
         btnmodifier = new javax.swing.JButton();
         btnsupprimer = new javax.swing.JButton();
+        date_debut = new com.toedter.calendar.JDateChooser();
+        date_fin = new com.toedter.calendar.JDateChooser();
+        txtideglise = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        btn_mouvement = new javax.swing.JButton();
+        btnpdf = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,6 +108,26 @@ public class EgliseView extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("id eglise");
+
+        jLabel2.setText("date debut");
+
+        jLabel3.setText("date de fin");
+
+        btn_mouvement.setText("mouvement");
+        btn_mouvement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_mouvementActionPerformed(evt);
+            }
+        });
+
+        btnpdf.setText("pdf");
+        btnpdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpdfActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelEgliseLayout = new javax.swing.GroupLayout(PanelEglise);
         PanelEglise.setLayout(PanelEgliseLayout);
         PanelEgliseLayout.setHorizontalGroup(
@@ -107,35 +135,87 @@ public class EgliseView extends javax.swing.JFrame {
             .addGroup(PanelEgliseLayout.createSequentialGroup()
                 .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelEgliseLayout.createSequentialGroup()
-                        .addGap(163, 163, 163)
-                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(btnajouter, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(btnmodifier, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(btnsupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(77, Short.MAX_VALUE)
+                        .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelEgliseLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(46, 46, 46)
+                                .addComponent(date_fin, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(51, 51, 51)
+                                .addComponent(btn_mouvement)
+                                .addGap(174, 174, 174))
+                            .addGroup(PanelEgliseLayout.createSequentialGroup()
+                                .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PanelEgliseLayout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelEgliseLayout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(3, 3, 3)))
+                                .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(date_debut, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(PanelEgliseLayout.createSequentialGroup()
+                                        .addGap(33, 33, 33)
+                                        .addComponent(txtideglise, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(197, 197, 197)
+                                        .addComponent(btnpdf)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                                .addComponent(btnajouter, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(PanelEgliseLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 759, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(244, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30)
+                .addComponent(btnmodifier)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnsupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(223, 223, 223))
+            .addGroup(PanelEgliseLayout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 921, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelEgliseLayout.setVerticalGroup(
             PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelEgliseLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelEgliseLayout.createSequentialGroup()
-                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelEgliseLayout.createSequentialGroup()
-                        .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnmodifier, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnajouter, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnsupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(335, Short.MAX_VALUE))
+                        .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelEgliseLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PanelEgliseLayout.createSequentialGroup()
+                                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelEgliseLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(btnpdf)
+                                            .addComponent(txtideglise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(56, 56, 56))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelEgliseLayout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnmodifier, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnajouter, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(date_debut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)
+                        .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_mouvement)
+                            .addGroup(PanelEgliseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(date_fin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3)))
+                        .addGap(64, 64, 64))
+                    .addGroup(PanelEgliseLayout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(btnsupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(143, 143, 143)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -143,16 +223,16 @@ public class EgliseView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap()
                 .addComponent(PanelEglise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(15, 15, 15)
                 .addComponent(PanelEglise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
 
         pack();
@@ -180,6 +260,54 @@ public class EgliseView extends javax.swing.JFrame {
         supprimer.setLocationRelativeTo(null);
         supprimer.setVisible(true);
     }//GEN-LAST:event_btnsupprimerActionPerformed
+
+    private void btn_mouvementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_mouvementActionPerformed
+        // TODO add your handling code here:
+        
+     // Vérifier les champs
+    if (txtideglise.getText().isEmpty()) {
+        Methodes.showInfo("Veuillez saisir l'ID de l'église.");
+        return;
+    }
+    if (date_debut.getDate() == null || date_fin.getDate() == null) {
+        Methodes.showInfo("Veuillez sélectionner les deux dates.");
+        return;
+    }
+
+    // Utilisation correcte : idEglise est une chaîne
+    String idEglise = txtideglise.getText();
+
+    // ⚠️ Conversion obligatoire vers java.sql.Date
+    java.sql.Date debut = new java.sql.Date(date_debut.getDate().getTime());
+    java.sql.Date fin = new java.sql.Date(date_fin.getDate().getTime());
+
+    try {
+        Connection conn = Methodes.getconnexion();
+        if (conn == null) return;
+
+        // Appel à la méthode avec idEglise en tant que chaîne
+        Eglise eglise = new Eglise(conn);
+        List<Map<String, Object>> data = eglise.getMouvementCaisse(debut, fin, idEglise);
+
+        Map<String, String> titres = Map.of(
+            "date", "Date",
+            "typeMouvement", "Type de Mouvement",
+            "motif", "Motif",
+            "montant", "Montant"
+        );
+
+        // Affichage des données dans la JTable
+        DefaultTableModel model = Methodes.createTableModel(data, titres);
+        tableEglises.setModel(model);
+
+    } catch (Exception e) {
+        Methodes.showError("Erreur : " + e.getMessage());
+    }         
+    }//GEN-LAST:event_btn_mouvementActionPerformed
+
+    private void btnpdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpdfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnpdfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,11 +359,19 @@ public class EgliseView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelEglise;
+    private javax.swing.JButton btn_mouvement;
     private javax.swing.JButton btnajouter;
     private javax.swing.JButton btnmodifier;
+    private javax.swing.JButton btnpdf;
     private javax.swing.JButton btnsupprimer;
+    private com.toedter.calendar.JDateChooser date_debut;
+    private com.toedter.calendar.JDateChooser date_fin;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableEglises;
     private java.awt.Label title;
+    private javax.swing.JTextField txtideglise;
     // End of variables declaration//GEN-END:variables
 }
