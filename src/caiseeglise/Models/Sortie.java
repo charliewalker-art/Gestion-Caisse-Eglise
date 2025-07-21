@@ -19,7 +19,7 @@ public class Sortie extends Table {
         return "Sortie";
     }
 
-    public String insertSortie(String motif, int montantSortie, String dateSortie, String ideglise) {
+  /*  public String insertSortie(String motif, int montantSortie, String dateSortie, String ideglise) {
     String sqlInsert = "INSERT INTO SORTIE (motif, montantSortie, dateSortie, ideglise) VALUES (?, ?, ?, ?)";
     String sqlUpdateSolde = "UPDATE EGLISE SET Solde = COALESCE(Solde, 0) - ? WHERE ideglise = ?";
 
@@ -68,6 +68,7 @@ public class Sortie extends Table {
         return "INSERT_EXCEPTION: " + e.getMessage();
     }
 }
+*/
 public List<Map<String, Object>> afficheSorties() throws SQLException {
     List<Map<String, Object>> results = new ArrayList<>();
 
@@ -148,6 +149,75 @@ public List<Map<String, Object>> afficheSorties() throws SQLException {
     return results;
 }
 
+public String insertSortie(String motif, int montantSortie, String dateSortie, String ideglise) {
+    String sqlSelectSolde = "SELECT COALESCE(Solde, 0) FROM EGLISE WHERE ideglise = ?";
+    String sqlInsert = "INSERT INTO SORTIE (motif, montantSortie, dateSortie, ideglise) VALUES (?, ?, ?, ?)";
+    String sqlUpdateSolde = "UPDATE EGLISE SET Solde = Solde - ? WHERE ideglise = ?";
+
+    try {
+        conn.setAutoCommit(false);  // Démarre la transaction
+
+        // 1) Vérifier le solde
+        int soldeActuel = 0;
+        try (PreparedStatement stmtSelect = conn.prepareStatement(sqlSelectSolde)) {
+            stmtSelect.setString(1, ideglise);
+            ResultSet rs = stmtSelect.executeQuery();
+            if (rs.next()) {
+                soldeActuel = rs.getInt(1);
+            } else {
+                conn.rollback();
+                conn.setAutoCommit(true);
+                return "EGLISE_NOT_FOUND";
+            }
+        }
+
+        // 2) Vérifier si le solde après sortie serait < 10 000
+        if ((soldeActuel - montantSortie) < 10000) {
+            conn.setAutoCommit(true);
+            return "le solde actuel ne doit pas être inférieur à 10.000 Ar";
+        }
+
+        // 3) Insertion dans SORTIE
+        try (PreparedStatement stmtInsert = conn.prepareStatement(sqlInsert)) {
+            stmtInsert.setString(1, motif);
+            stmtInsert.setInt(2, montantSortie);
+            stmtInsert.setString(3, dateSortie);
+            stmtInsert.setString(4, ideglise);
+
+            int rowsInsert = stmtInsert.executeUpdate();
+            if (rowsInsert != 1) {
+                conn.rollback();
+                conn.setAutoCommit(true);
+                return "INSERT_ERROR";
+            }
+        }
+
+        // 4) Mise à jour du solde
+        try (PreparedStatement stmtUpdate = conn.prepareStatement(sqlUpdateSolde)) {
+            stmtUpdate.setInt(1, montantSortie);
+            stmtUpdate.setString(2, ideglise);
+
+            int rowsUpdate = stmtUpdate.executeUpdate();
+            if (rowsUpdate != 1) {
+                conn.rollback();
+                conn.setAutoCommit(true);
+                return "UPDATE_ERROR";
+            }
+        }
+
+        conn.commit();
+        conn.setAutoCommit(true);
+        return "INSERT_OK";
+
+    } catch (SQLException e) {
+        try {
+            conn.rollback();
+            conn.setAutoCommit(true);
+        } catch (SQLException ex) {
+        }
+        return "INSERT_EXCEPTION: " + e.getMessage();
+    }
+}
 
 }
  

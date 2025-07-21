@@ -24,11 +24,10 @@ public class HistogrammeCaisse extends JPanel {
             if (conn != null) {
                 HistoDonne donne = new HistoDonne(conn);
 
-                // Récupérer les montants filtrés par mois (mois en int)
                 int montantEntree = donne.getMontantEntreParMois(ideglise, mois);
                 int montantSortie = donne.getMontantSortieParMois(ideglise, mois);
 
-                String nomMois = donne.getNomMois(mois); // ou crée une méthode publique dans HistoDonne
+                String nomMois = donne.getNomMois(mois); // utilise méthode si elle existe
 
                 dataset.addValue(montantEntree, "Entrées", nomMois);
                 dataset.addValue(montantSortie, "Sorties", nomMois);
@@ -51,11 +50,11 @@ public class HistogrammeCaisse extends JPanel {
 
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setMouseWheelEnabled(true);
+        chartPanel.setPreferredSize(new Dimension(800, 600)); // facultatif, adapte si besoin
 
         this.add(chartPanel, BorderLayout.CENTER);
     }
 
-    // Méthode locale pour nom de mois (si pas accessible depuis HistoDonne)
     private String getNomMois(int mois) {
         String[] moisNom = {
                 "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
