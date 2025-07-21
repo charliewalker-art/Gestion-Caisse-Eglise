@@ -1,2 +1,0 @@
-caiseeglise.Entry
-caiseeglise.PDFCreator

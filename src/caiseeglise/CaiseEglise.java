@@ -12,7 +12,7 @@ public class CaiseEglise {
   
         //appel du form Eglise View
         javax.swing.SwingUtilities.invokeLater(() -> {
-            new Menu().setVisible(true);
+            new Histograminfo().setVisible(true);
         }); 
     
         
