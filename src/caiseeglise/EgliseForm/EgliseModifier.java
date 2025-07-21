@@ -33,6 +33,7 @@ public class EgliseModifier extends javax.swing.JFrame {
           style.styliserTextField(txtideglise);
          
           style.styliserTextField(txtdesign);
+          style.styliserTextField(txtsolde);
     }
 
     /**

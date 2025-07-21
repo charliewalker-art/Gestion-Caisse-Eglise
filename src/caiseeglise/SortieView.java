@@ -4,6 +4,8 @@ package caiseeglise;
 import caiseeglise.Models.Sortie;
 import caiseeglise.Models.Methodes;
 import caiseeglise.SortieForm.SortieAjouter;
+import caiseeglise.SortieForm.SortieModifier;
+import caiseeglise.SortieForm.SortieSupprimer;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -55,6 +57,8 @@ public JPanel getPanelSortie() {
         TableSortie = new javax.swing.JTable();
         txtrecherceh = new javax.swing.JTextField();
         txtrechecehmotif = new javax.swing.JButton();
+        btn_modifier_show = new javax.swing.JButton();
+        btnsupprimeshow = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +93,20 @@ public JPanel getPanelSortie() {
             }
         });
 
+        btn_modifier_show.setText("Modifier");
+        btn_modifier_show.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_modifier_showActionPerformed(evt);
+            }
+        });
+
+        btnsupprimeshow.setText("Supprimer");
+        btnsupprimeshow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsupprimeshowActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanleSortieLayout = new javax.swing.GroupLayout(PanleSortie);
         PanleSortie.setLayout(PanleSortieLayout);
         PanleSortieLayout.setHorizontalGroup(
@@ -96,11 +114,15 @@ public JPanel getPanelSortie() {
             .addGroup(PanleSortieLayout.createSequentialGroup()
                 .addGroup(PanleSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanleSortieLayout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(124, 124, 124)
+                        .addGap(61, 61, 61)
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
                         .addComponent(btnajouteSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63)
+                        .addGap(28, 28, 28)
+                        .addComponent(btn_modifier_show, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(btnsupprimeshow, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
                         .addComponent(txtrecherceh, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
                         .addComponent(txtrechecehmotif, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -114,13 +136,15 @@ public JPanel getPanelSortie() {
             .addGroup(PanleSortieLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PanleSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanleSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnajouteSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnsupprimeshow, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanleSortieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtrecherceh, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtrechecehmotif, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(25, 25, 25)
+                            .addComponent(txtrechecehmotif, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnajouteSortie, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_modifier_show, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(14, 14, 14)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(29, Short.MAX_VALUE))
         );
@@ -139,7 +163,7 @@ public JPanel getPanelSortie() {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(PanleSortie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
 
         pack();
@@ -191,6 +215,20 @@ public JPanel getPanelSortie() {
     }
         
     }//GEN-LAST:event_txtrechecehmotifActionPerformed
+
+    private void btn_modifier_showActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modifier_showActionPerformed
+        // TODO add your handling code here:
+          SortieModifier SortieModifier = new SortieModifier();
+        SortieModifier.setLocationRelativeTo(null);
+        SortieModifier.setVisible(true);
+    }//GEN-LAST:event_btn_modifier_showActionPerformed
+
+    private void btnsupprimeshowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsupprimeshowActionPerformed
+        // TODO add your handling code here:
+          SortieSupprimer SortieSupprimer = new SortieSupprimer();
+        SortieSupprimer.setLocationRelativeTo(null);
+        SortieSupprimer.setVisible(true);
+    }//GEN-LAST:event_btnsupprimeshowActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,7 +284,9 @@ public JPanel getPanelSortie() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanleSortie;
     private javax.swing.JTable TableSortie;
+    private javax.swing.JButton btn_modifier_show;
     private javax.swing.JButton btnajouteSortie;
+    private javax.swing.JButton btnsupprimeshow;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
     private javax.swing.JButton txtrechecehmotif;

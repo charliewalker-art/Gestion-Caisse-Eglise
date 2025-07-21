@@ -218,6 +218,138 @@ public String insertSortie(String motif, int montantSortie, String dateSortie, S
         return "INSERT_EXCEPTION: " + e.getMessage();
     }
 }
+//modifie sorite
+
+    public String modifierSortie(int idsortie, String nouveauMotif, int nouveauMontant, String nouvelleDate) {
+    String sqlSelect = "SELECT montantSortie, ideglise FROM SORTIE WHERE idsortie = ?";
+    String sqlUpdate = "UPDATE SORTIE SET motif = ?, montantSortie = ?, dateSortie = ? WHERE idsortie = ?";
+
+    try {
+        conn.setAutoCommit(false); // Début de transaction
+
+        int ancienMontant = 0;
+        String ideglise = null;
+
+        // 1. Récupération de l'ancien montant et ideglise
+        try (PreparedStatement stmtSelect = conn.prepareStatement(sqlSelect)) {
+            stmtSelect.setInt(1, idsortie);
+            ResultSet rs = stmtSelect.executeQuery();
+
+            if (rs.next()) {
+                ancienMontant = rs.getInt("montantSortie");
+                ideglise = rs.getString("ideglise");
+            } else {
+                conn.rollback();
+                conn.setAutoCommit(true);
+                return "SORTIE_NOT_FOUND";
+            }
+        }
+
+        // 2. Mise à jour de la sortie
+        try (PreparedStatement stmtUpdate = conn.prepareStatement(sqlUpdate)) {
+            stmtUpdate.setString(1, nouveauMotif);
+            stmtUpdate.setInt(2, nouveauMontant);
+            stmtUpdate.setString(3, nouvelleDate);
+            stmtUpdate.setInt(4, idsortie);
+
+            int rowsUpdated = stmtUpdate.executeUpdate();
+            if (rowsUpdated == 0) {
+                conn.rollback();
+                conn.setAutoCommit(true);
+                return "UPDATE_SORTIE_FAILED";
+            }
+        }
+
+        // 3. Mise à jour du solde (ancienne sortie était -ancienMontant, la nouvelle sera -nouveauMontant)
+        int difference = ancienMontant - nouveauMontant; // exemple : 8000 -> 10000 → diff = -2000 (on retire encore 2000)
+        Eglise eglise = new Eglise(conn);
+        String soldeResult = eglise.mettreAJourSolde(ideglise, difference); // on ajuste le solde
+
+        if (!"UPDATE_OK".equals(soldeResult)) {
+            conn.rollback();
+            conn.setAutoCommit(true);
+            return "UPDATE_SOLDE_FAILED: " + soldeResult;
+        }
+
+        conn.commit();
+        conn.setAutoCommit(true);
+        return "MODIFICATION_OK";
+
+    } catch (SQLException e) {
+        try {
+            conn.rollback();
+            conn.setAutoCommit(true);
+        } catch (SQLException ex) {
+        }
+        e.printStackTrace();
+        return "MODIFICATION_EXCEPTION: " + e.getMessage();
+    }
+}
+
+    
+    //fonction suppriemr
+    
+    public String supprimerSortie(int idsortie) {
+    String sqlSelect = "SELECT montantSortie, ideglise FROM SORTIE WHERE idsortie = ?";
+    String sqlDelete = "DELETE FROM SORTIE WHERE idsortie = ?";
+
+    try {
+        conn.setAutoCommit(false); // Début de la transaction
+
+        int montant = 0;
+        String ideglise = null;
+
+        // 1. Récupérer le montant et ideglise de la sortie
+        try (PreparedStatement stmtSelect = conn.prepareStatement(sqlSelect)) {
+            stmtSelect.setInt(1, idsortie);
+            ResultSet rs = stmtSelect.executeQuery();
+
+            if (rs.next()) {
+                montant = rs.getInt("montantSortie");
+                ideglise = rs.getString("ideglise");
+            } else {
+                conn.rollback();
+                conn.setAutoCommit(true);
+                return "SORTIE_NOT_FOUND";
+            }
+        }
+
+        // 2. Supprimer la sortie
+        try (PreparedStatement stmtDelete = conn.prepareStatement(sqlDelete)) {
+            stmtDelete.setInt(1, idsortie);
+            int rowsDeleted = stmtDelete.executeUpdate();
+            if (rowsDeleted == 0) {
+                conn.rollback();
+                conn.setAutoCommit(true);
+                return "DELETE_FAILED";
+            }
+        }
+
+        // 3. Mettre à jour le solde de l'église (ajout du montant supprimé)
+        Eglise eglise = new Eglise(conn);
+        String soldeUpdateResult = eglise.mettreAJourSolde(ideglise, montant); // ⚠️ on ajoute le montant (car sortie supprimée)
+
+        if (!"UPDATE_OK".equals(soldeUpdateResult)) {
+            conn.rollback();
+            conn.setAutoCommit(true);
+            return "UPDATE_SOLDE_FAILED: " + soldeUpdateResult;
+        }
+
+        conn.commit();
+        conn.setAutoCommit(true);
+        return "DELETE_OK";
+
+    } catch (SQLException e) {
+        try {
+            conn.rollback();
+            conn.setAutoCommit(true);
+        } catch (SQLException ex) {
+            // Ignoré
+        }
+        e.printStackTrace();
+        return "DELETE_EXCEPTION: " + e.getMessage();
+    }
+}
 
 }
  
